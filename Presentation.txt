@@ -1,0 +1,94 @@
+2-Way Conversation in ReactJS
+Tuesday, October 30, 2018
+
+Description: how a child component can talk to the parent component using ReactJS.
+ 
+1-Way Conversation in ReactJS 
+React is all about one-way data flow down the component hierarchy. Usually, you store the data that could be dynamically changed in the state of the parent component, and then pass the data down to the child components.  
+https://github.com/designBuildShipSoftware/reactjs-2-way-conversation/blob/master/1WayConversationReactJS.html
+
+2-Way Conversation in ReactJS
+Let’s think about what we want to happen. We want to make sure that whenever the kid makes a choice, we update the state to reflect the parent's reaction. 
+Step 1: <select onChange={this.handleChange}>
+We can use the onChange event on the <select> to be notified of that the kid has made a choice. The onchange event occurs when the value of an element has been changed. 
+Step 2: The onChange event handler, which is {this.handleChange} in our case, will call setState(), and the state will be updated.
+handleChange(e) {
+    console.log(e.target.value, " was selected");
+    if(e.target.value === "0")
+    this.setState({parentSay: "What do you want for dinner?"});
+    if(e.target.value === "1")
+    this.setState({parentSay: "Nope!"});
+    if(e.target.value === "2")
+    this.setState({parentSay: "Yeah!"});
+  }
+Here we use e.target.value to catch the value of the option selected by the user. 
+The "e" here stands for "event". Event.target property is a reference to the object that dispatched the event. The event.target property returns the element that triggered the event, and not necessarily the eventlistener's element. 
+
+Now let's run our code.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+What did we miss?
+
+
+
+
+
+
+
+
+
+
+
+
+
+Step 3: this.handleChange = this.handleChange.bind(this);
+A function's this keyword behaves a little differently in JavaScript compared to other languages. In most cases, the value of this is determined by how a function is called. The bind method sets the value of a function's this regardless of how it's called.
+https://github.com/designBuildShipSoftware/reactjs-2-way-conversation/blob/master/2WayConversationReactJS.html
+
+2-Way Conversation with Child Component
+If a child component was created, then we can use props to pass down the event handler from the parent component to the child component, and the event handler can update the state of the parent component. 
+props are a way of passing data from parent to child. In essence, props are just a communication channel between components, always moving from top (parent) to bottom (child).
+https://github.com/designBuildShipSoftware/reactjs-2-way-conversation/blob/master/ChildComponent2WayConv.html
+Step1: <select onChange={this.props.onChange}>
+("this" here refers to this KidChoice component.)
+Step2: <KidChoice onChange = {this.handleChange} />
+("this" here refers to this TwoWayConversation component.)
+
+
+References:
+https://reactjs.org/docs/thinking-in-react.html 
+https://developer.mozilla.org/en-US/
+https://www.w3schools.com/jsref/event_onchange.asp
+
+
+
+
+
+
+
+
+
+
+
+Thank you!
+
+
+
+
+
+
+
+
+
