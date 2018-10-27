@@ -1,0 +1,50 @@
+<!doctype html>
+
+<html>
+
+<head>
+    <title>OneWayConversation</title>
+    <style>
+        body {
+  padding: 20px
+}
+</style>
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.24.0/babel.js"></script>
+</head>
+
+<body>
+    <div id="container">
+    </div>
+    <script type='text/babel'>
+
+  class TwoWayConversation extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      parentSay: "What do you want for dinner?"
+    };
+  }
+
+  render() {
+    return (
+      <div>Parent: {this.state.parentSay} <br/> <br/>
+        <select>
+        <option value="0">Choose your option</option>
+        <option value="1">Candy and Popsicle</option>
+        <option value="2">Cabbage and beef</option>
+      </select>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(
+  <TwoWayConversation />,
+  document.getElementById('container')
+);
+</script>
+</body>
+
+</html>
